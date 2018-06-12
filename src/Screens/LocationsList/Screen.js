@@ -1,21 +1,32 @@
 // @flow
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import I18n from '../../Localization/i18n';
+import styles from './Style';
+import LocationListRow from './Components/LocationListRow';
+import getSortedLocations from './Redux/LocationsSelector';
 
-type Props = {};
+type Props = {
+    locations: [],
+};
 export class LocationsList extends Component<Props> {
+    onRowPress() {}
+
+    renderItem = ({ item }) => (
+        <LocationListRow onRowPress={() => this.onRowPress()} locationData={item} />
+    );
+
     render() {
+        const { locations } = this.props;
         return (
-            <View>
-                <Text>{I18n.t('LocationsList')}</Text>
+            <View style={styles.container}>
+                <FlatList styles={styles.list} data={locations} renderItem={this.renderItem} />
             </View>
         );
     }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({ locations: getSortedLocations(state) });
 
 const mapDispatchToProps = {};
 
