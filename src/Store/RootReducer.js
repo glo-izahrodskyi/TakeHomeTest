@@ -1,8 +1,8 @@
-const initialState = {};
+import { combineReducers } from 'redux';
+import locations from '../RootComponent/Redux/LocationsReducer';
+import userLocation from '../RootComponent/Redux/UserLocationReducer';
 
-export default function rootReducer(state = initialState, action) {
-    switch (action.type) {
-        default:
-            return state;
-    }
-}
+export default combineReducers({
+    locations,
+    userLocation,
+});
