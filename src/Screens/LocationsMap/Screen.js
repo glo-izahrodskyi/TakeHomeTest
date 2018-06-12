@@ -1,15 +1,16 @@
 // @flow
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import I18n from '../../Localization/i18n';
+import MapView from 'react-native-maps';
+import styles from './Style';
 
 type Props = {};
 export class LocationsMap extends Component<Props> {
     render() {
         return (
-            <View>
-                <Text>{I18n.t('LocationsMap')}</Text>
+            <View style={styles.container}>
+                <MapView style={styles.map} showsUserLocation />
             </View>
         );
     }

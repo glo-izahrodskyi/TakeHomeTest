@@ -48,6 +48,9 @@ buck-out/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/
 
+# CocoaPods
+Pods/
+
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots

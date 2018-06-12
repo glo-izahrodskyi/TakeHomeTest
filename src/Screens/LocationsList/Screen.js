@@ -9,7 +9,7 @@ export class LocationsList extends Component<Props> {
     render() {
         return (
             <View>
-                <Text>{I18n.t('LocationsMap')}</Text>
+                <Text>{I18n.t('LocationsList')}</Text>
             </View>
         );
     }
