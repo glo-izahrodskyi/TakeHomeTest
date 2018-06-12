@@ -12,9 +12,10 @@ type Props = {
 export class LocationsList extends Component<Props> {
     onRowPress() {}
 
-    renderItem = ({ item }) => (
-        <LocationListRow onRowPress={() => this.onRowPress()} locationData={item} />
-    );
+    renderItem = (data: any) => {
+        const { item } = data;
+        return <LocationListRow onRowPress={() => this.onRowPress()} locationData={item} />;
+    };
 
     render() {
         const { locations } = this.props;

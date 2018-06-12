@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint --ext .jsx,.js ./src",
-    "prettier": "prettier --write ./src/**/*.js"
+    "prettier": "prettier --write ./src/**/*.js",
+    "flow": "flow"
   },
   "dependencies": {
     "geolib": "^2.0.24",
@@ -34,6 +35,7 @@
     "eslint-plugin-prefer-object-spread": "^1.2.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.9.1",
+    "flow-bin": "^0.67.1",
     "jest": "23.1.0",
     "prettier": "1.13.5",
     "react-test-renderer": "16.3.1"
