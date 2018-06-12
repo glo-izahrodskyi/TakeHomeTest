@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native';
+import Colors from '../../Theme/Colors';
 
 export default StyleSheet.create({
     containerEdit: {
         flex: 1,
-        backgroundColor: '#FAFAFA',
+        backgroundColor: Colors.LIGHT_LIGHT_GREY,
     },
     containerPreview: {
         flex: 1,
-        backgroundColor: '#FAFAFA',
+        backgroundColor: Colors.LIGHT_LIGHT_GREY,
     },
     nameEdit: {
         paddingLeft: 10,
@@ -22,7 +23,7 @@ export default StyleSheet.create({
     },
     previewName: {
         paddingLeft: 10,
-        color: '#000',
+        color: 'black',
         paddingRight: 10,
         paddingTop: 15,
         fontSize: 18,
@@ -31,12 +32,12 @@ export default StyleSheet.create({
     distance: {
         paddingLeft: 10,
         paddingRight: 10,
-        color: '#BBBBBB',
+        color: Colors.LIGHT_GREY,
         fontSize: 14,
     },
     description: {
         padding: 10,
-        color: '#000',
+        color: 'black',
         paddingTop: 15,
         fontSize: 14,
     },

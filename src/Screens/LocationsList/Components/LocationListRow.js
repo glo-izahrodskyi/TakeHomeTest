@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, TouchableOpacity, View, Text, Image } from 'react-native';
 import { formatDistance } from '../../../Utils/Utils';
+import Colors from '../../../Theme/Colors';
+import Images from '../../../Theme/Images';
 
 type Props = {
     locationData: any,
@@ -23,7 +25,7 @@ export default class LocationsListRow extends Component<Props> {
                             ios: (
                                 <Image
                                     style={styles.itemImageIos}
-                                    source={require('../../../../assets/chevron_right.png')}
+                                    source={Images.ChevronRightImage}
                                 />
                             ),
                             android: null,
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     item: {
         padding: 16,
         borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        borderBottomColor: Colors.DARK_BLUE,
         height: 90,
     },
     content: {
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     },
     distance: {
         flex: 2,
-        color: '#BBBBBB',
+        color: Colors.LIGHT_GREY,
         fontSize: 14,
     },
     descriptionColumn: {
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     description: {
-        color: '#BBBBBB',
+        color: Colors.LIGHT_GREY,
         fontSize: 14,
     },
 });

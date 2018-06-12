@@ -9,6 +9,7 @@ import {
     Image,
     I18nManager,
 } from 'react-native';
+import Colors from '../../../Theme/Colors';
 
 type Props = {
     disabled: boolean,
@@ -23,7 +24,7 @@ export default class HeaderButton extends Component<Props> {
     static defaultProps = {
         disabled: false,
         borderless: true,
-        pressColor: 'rgba(0, 0, 0, .32)',
+        pressColor: Colors.TRANSPARENTLY_BLACK,
     };
 
     renderIos() {

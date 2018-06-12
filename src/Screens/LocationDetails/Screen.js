@@ -6,8 +6,8 @@ import { TextField } from 'react-native-material-textfield';
 import { updateLocation } from './Redux/Actions/LocationActions';
 import { formatDistance } from '../../Utils/Utils';
 import styles from './Style';
-import HeaderButton from './Components/HeaderButton';
 import I18n from '../../Localization/i18n';
+import HeaderConfig from './Components/HeaderConfig';
 
 type Props = {
     updateLocation: Function,
@@ -22,44 +22,7 @@ type State = {
 };
 
 export class LocationDetails extends Component<Props, State> {
-    static navigationOptions = (data: any) => {
-        const { navigation } = data;
-        const { params = {} } = navigation.state;
-        let config;
-        if (!params.editMode) {
-            config = {
-                title: I18n.t('Location'),
-                headerRight: (
-                    <HeaderButton
-                        title={'Edit'}
-                        onPressCallback={params.editDetails}
-                        iconSource={require('../../../assets/edit_btn.png')}
-                    />
-                ),
-            };
-        } else {
-            config = {
-                title: I18n.t('Location'),
-                headerRight: (
-                    <HeaderButton
-                        disabled={params.disabledSave}
-                        title={I18n.t('Save')}
-                        onPressCallback={params.saveDetails}
-                        iconSource={require('../../../assets/check_btn.png')}
-                    />
-                ),
-                headerLeft: (
-                    <HeaderButton
-                        title={I18n.t('Cancel')}
-                        onPressCallback={params.cancelEditing}
-                        iconSource={require('../../../assets/close_btn.png')}
-                    />
-                ),
-            };
-        }
-
-        return config;
-    };
+    static navigationOptions = HeaderConfig();
 
     constructor(props: Props) {
         super(props);
@@ -74,10 +37,12 @@ export class LocationDetails extends Component<Props, State> {
 
     cancelEditing() {
         const { location } = this.props.navigation.state.params;
-        this.setState({ editMode: false, name: location.name, description: location.description });
-        this.props.navigation.setParams({
+        this.setState({
             editMode: false,
+            name: location.name,
+            description: location.description,
         });
+        this.props.navigation.setParams({ editMode: false });
     }
 
     componentDidMount() {
@@ -105,9 +70,7 @@ export class LocationDetails extends Component<Props, State> {
 
     editDetais() {
         this.setState({ editMode: true });
-        this.props.navigation.setParams({
-            editMode: true,
-        });
+        this.props.navigation.setParams({ editMode: true });
     }
 
     renderEditDetails() {
