@@ -8,13 +8,16 @@ import getSortedLocations from './Redux/LocationsSelector';
 
 type Props = {
     locations: [],
+    navigation: any,
 };
 export class LocationsList extends Component<Props> {
-    onRowPress() {}
+    onRowPress(location: any) {
+        this.props.navigation.navigate('Details', { location, editMode: false });
+    }
 
     renderItem = (data: any) => {
         const { item } = data;
-        return <LocationListRow onRowPress={() => this.onRowPress()} locationData={item} />;
+        return <LocationListRow onRowPress={() => this.onRowPress(item)} locationData={item} />;
     };
 
     render() {

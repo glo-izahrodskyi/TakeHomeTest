@@ -1,3 +1,8 @@
 export default {
-    LocationsList: 'Locations List',
+    Name: 'Name',
+    LocationHasNoNote: 'This location has no notes',
+    Description: 'Description',
+    Cancel: 'Cancel',
+    Save: 'Save',
+    Location: 'Location',
 };

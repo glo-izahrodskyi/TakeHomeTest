@@ -10,6 +10,7 @@ import {
 import { Platform, SegmentedControlIOS } from 'react-native';
 import LocationsListScreen from '../Screens/LocationsList/Screen';
 import LocationsMapScreen from '../Screens/LocationsMap/Screen';
+import LocationDetailsScreen from '../Screens/LocationDetails/Screen';
 
 function createIOSTabsNavigation(tabRoutes) {
     const IOSTabBar = ({ navigation }) => {
@@ -60,6 +61,9 @@ function createStackNavigation(tabs) {
             navigationOptions: () => ({
                 header: null,
             }),
+        },
+        Details: {
+            screen: LocationDetailsScreen,
         },
     });
     return stack;
