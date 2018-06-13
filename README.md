@@ -41,3 +41,9 @@ Android
  - Android studio version : 3.1.2
  - compile Sdk Version : 23
  - android version : 6.0
+
+ # Assumptions
+
+ 1. To add a new location just long-press on a map and press "Save Location".
+ 1. To view the location info tap on a marker and press "Details".
+ 1. Default locations are fetched from a predefined URL only once. After that they are stored on a device so user can update them as he wants in a future.
