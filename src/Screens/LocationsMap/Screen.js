@@ -78,7 +78,11 @@ export class LocationsMap extends Component<Props, State> {
     onSaveNewLocation = () => {
         const { selectedLocation } = this.state;
         this.newLocationsModal.close();
-        this.props.navigation.navigate('Details', { location: selectedLocation, editMode: true });
+        this.props.navigation.navigate('Details', {
+            location: selectedLocation,
+            editMode: true,
+            isNew: true,
+        });
     };
 
     onCancelSave = () => {

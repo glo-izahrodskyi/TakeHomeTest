@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
-import { updateLocation } from './Redux/Actions/LocationActions';
+import { updateLocation, addLocation } from './Redux/Actions/LocationActions';
 import { formatDistance } from '../../Utils/Utils';
 import styles from './Style';
 import I18n from '../../Localization/i18n';
 import HeaderConfig from './Components/HeaderConfig';
 
 type Props = {
+    addLocation: Function,
     updateLocation: Function,
     navigation: any,
 };
@@ -19,6 +20,7 @@ type State = {
     description: string,
     distance: string,
     editMode: boolean,
+    isNew: boolean,
 };
 
 export class LocationDetails extends Component<Props, State> {
@@ -26,16 +28,21 @@ export class LocationDetails extends Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        const { location, editMode } = props.navigation.state.params;
+        const { location, editMode, isNew } = props.navigation.state.params;
         this.state = {
             editMode,
             name: location.name,
             description: location.description,
             distance: location.distance,
+            isNew,
         };
     }
 
     cancelEditing() {
+        if (this.state.isNew) {
+            this.props.navigation.goBack();
+            return;
+        }
         const { location } = this.props.navigation.state.params;
         this.setState({
             editMode: false,
@@ -64,8 +71,14 @@ export class LocationDetails extends Component<Props, State> {
             editMode: false,
             location: { ...updatedLocation },
         });
-        this.props.updateLocation(updatedLocation);
-        this.setState({ editMode: false });
+
+        if (this.state.isNew) {
+            this.props.addLocation(updatedLocation);
+            this.setState({ editMode: false, isNew: false });
+        } else {
+            this.props.updateLocation(updatedLocation);
+            this.setState({ editMode: false });
+        }
     }
 
     editDetais() {
@@ -119,6 +132,7 @@ const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
     updateLocation,
+    addLocation,
 };
 
 export default connect(

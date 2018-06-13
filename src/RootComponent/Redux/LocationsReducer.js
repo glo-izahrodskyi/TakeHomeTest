@@ -1,5 +1,8 @@
 import { GET_LOCATIONS_SUCCESS } from './Actions/ListLocations';
-import { UPDATE_LOCATION } from '../../Screens/LocationDetails/Redux/Actions/LocationActions';
+import {
+    UPDATE_LOCATION,
+    ADD_LOCATION,
+} from '../../Screens/LocationDetails/Redux/Actions/LocationActions';
 
 const initialState = [];
 
@@ -11,6 +14,8 @@ export default function locationsReducer(state = initialState, action) {
             return state.map(
                 location => (location.id === action.payload.id ? { ...action.payload } : location),
             );
+        case ADD_LOCATION:
+            return [...state, action.payload];
         default:
             return state;
     }
