@@ -7,4 +7,6 @@ export default {
     Location: 'Location',
     Edit: 'Edit',
     Details: 'Details',
+    SaveLocation: 'Save Location',
+    AddLocation: 'Add Location',
 };
