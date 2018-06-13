@@ -5,5 +5,6 @@ export default {
     Cancel: 'Cancel',
     Save: 'Save',
     Location: 'Location',
-    Edit: 'Edit'
+    Edit: 'Edit',
+    Details: 'Details',
 };

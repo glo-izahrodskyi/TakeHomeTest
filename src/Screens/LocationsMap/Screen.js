@@ -6,21 +6,26 @@ import MapView, { Marker, Callout } from 'react-native-maps';
 import styles from './Style';
 import getLocations from './Redux/LocationsSelector';
 import { regionContainingPoints } from '../../Utils/Utils';
+import LocationDetailsModal from './Components/LocationDetailsModal';
 
 type Props = {
     locations: [],
+    navigation: any,
 };
 
 type State = {
     initedRegion: boolean,
     mapReady: boolean,
+    selectedLocation: any,
 };
 export class LocationsMap extends Component<Props, State> {
+    locationDetailsModal: any;
     constructor(props: Props) {
         super(props);
         this.state = {
             initedRegion: false,
             mapReady: false,
+            selectedLocation: {},
         };
     }
 
@@ -40,10 +45,30 @@ export class LocationsMap extends Component<Props, State> {
         return initialRegion;
     }
 
+    onPressOnMarker(selectedLocation: any) {
+        this.setState({ selectedLocation });
+        this.locationDetailsModal.open();
+    }
+
+    openDetailsScreen = () => {
+        const { selectedLocation } = this.state;
+        this.locationDetailsModal.close();
+        this.props.navigation.navigate('Details', { location: selectedLocation, editMode: false });
+    };
+
     render() {
         const { locations } = this.props;
+        const { selectedLocation } = this.state;
         return (
             <View style={styles.container}>
+                <LocationDetailsModal
+                    name={selectedLocation.name}
+                    distance={selectedLocation.distance}
+                    onDetails={this.openDetailsScreen}
+                    ref={element => {
+                        this.locationDetailsModal = element;
+                    }}
+                />
                 <MapView
                     style={styles.map}
                     showsUserLocation
@@ -60,6 +85,9 @@ export class LocationsMap extends Component<Props, State> {
                                 longitude: location.lng,
                             }}
                             title={location.name}
+                            onPress={() => {
+                                this.onPressOnMarker(location);
+                            }}
                             description={location.name}
                         >
                             <Callout tooltip>
